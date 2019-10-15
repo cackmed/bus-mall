@@ -5,10 +5,11 @@ const radioImage = document.querySelectorAll('img');
 const radioInput = document.querySelectorAll('input');
 const productName = document.getElementById('product-name'); 
 const productArray = new ProductArray(products);
-let quanity = 0;
+let clicks = 0;
 
 radioInput.forEach((radioTag) => {
     radioTag.addEventListener('click', (event) => {
+        clicks = radioInput + 1;
     });
 });
 
