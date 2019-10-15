@@ -15,6 +15,16 @@ export class ProductArray {
         });
         return productsMatch;
     }
+    removeByID(productsId) {
+        const list = this.products;
+        for (let i = 0; i < list.length; i++) {
+            const products = list[i];
+            if (products.id === productsId) {
+                list.splice(i, 1);
+            }
+        }
+
+    }
     productsInArray() {
         return this.products.length;
     }
