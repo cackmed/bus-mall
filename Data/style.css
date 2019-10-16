@@ -2,3 +2,10 @@
     display: flex;
     flex-direction: row;
 }
+.product-img {
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    width: 250px;
+    height: 300px;
+
+}
