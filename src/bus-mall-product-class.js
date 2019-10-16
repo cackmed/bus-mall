@@ -16,13 +16,11 @@ export class ProductArray {
         return productsMatch;
     }
     removeProductsByID(productsId) {
-        const list = this.products;
-        for (let i = 0; i < list.length; i++) {
-            const products = list[i];
-            if (products.id === productsId) {
-                list.splice(i, 1);
+        this.products.forEach(products => {
+            if (productsId === products.id) {
+                this.products.splice(products.id, 1);
             }
-        }
+        });
 
     }
     productsInArray() {

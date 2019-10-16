@@ -3,19 +3,8 @@ import { ProductArray } from './bus-mall-product-class.js';
 
 const radioImage = document.querySelectorAll('img');
 const radioInput = document.querySelectorAll('input');
-const productName = document.getElementById('product-name'); 
 const masterproductArray = new ProductArray(products);
 let clicks = 0;
-
-radioInput.forEach((radioTag) => {
-    radioTag.addEventListener('click', (event) => {
-        const radioElement = event.target;
-        const userSelection = products.id === radioElement.value;
-        if (userSelection) {
-            masterproductArray.removeProductsByID(products.id);
-        }
-    });
-});
 
 export const productImageIntialization = () => {
     
@@ -35,17 +24,13 @@ export const productImageIntialization = () => {
             imageTag.src = '../assets/' + randomProduct2.image;
         } else if (i === 2) {
             imageTag.src = '../assets/' + randomProduct3.image;
-        }
-        console.log(randomProduct);
-        console.log(randomProduct2);
-        console.log(randomProduct3);
-    
+        }    
     });
     radioInput.forEach((radioTag, i) => {
         if (i === 1) {
             radioTag.value = randomProduct.id;
         } else if (i === 0) {
-            radioTag.calue = randomProduct2.id;
+            radioTag.value = randomProduct2.id;
         } else if (i === 2) {
             radioTag.value = randomProduct3.id;
         }
@@ -55,3 +40,15 @@ export const productImageIntialization = () => {
 document.querySelector('button').addEventListener('click', productImageIntialization);
 
 productImageIntialization();
+radioInput.forEach((radioTag) => {
+    debugger
+    const radioElement = radioTag.value;
+    radioTag.addEventListener('click', () => {
+        
+        const userSelection = radioElement.value;
+        if (userSelection === products.id) {
+            masterproductArray.removeProductsByID(radioElement);
+            debugger
+        }
+    });
+});
