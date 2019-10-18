@@ -4,7 +4,41 @@ import { ProductArray } from './bus-mall-product-class.js';
 const radioImage = document.querySelectorAll('img');
 const radioInput = document.querySelectorAll('input');
 const masterproductArray = new ProductArray(products);
-let clicks = 0;
+const clickArray = [];
+const dataTrackedArray = [];
+
+function trackClick(productID) {
+    let track = products.findByID(clickArray, productID);
+    if (!track) {
+        track = {
+            id: productID,
+            numOfTimesClicked: 1,
+            
+        };
+        clickArray.push(track);
+    } else {
+        track.numOfTimesClicked++;
+        return;
+    }
+    const clickJson = JSON.stringify(clickArray);
+    localStorage.setItem('clickArray', clickJson);
+}
+function trackShown(productID) {
+    let tracked = products.findByID(dataTrackedArray, productID);
+    if (!tracked) {
+        tracked = {
+            id: productID,
+            numOfTimesShown: 1,
+            
+        };
+        dataTrackedArray.push(tracked);
+    } else {
+        tracked.numOfTimesShown++;
+        return;
+    }
+    const showenJson = JSON.stringify(dataTrackedArray);
+    localStorage.setItem('dataTrackedArray', showenJson);
+}
 
 export const productImageIntialization = () => {
     
@@ -20,10 +54,13 @@ export const productImageIntialization = () => {
     radioImage.forEach((imageTag, i) => {
         if (i === 1) {
             imageTag.src = '../assets/' + randomProduct.image;
+            trackShown(randomProduct.id);
         } else if (i === 0) {
             imageTag.src = '../assets/' + randomProduct2.image;
+            trackShown(randomProduct2.id);
         } else if (i === 2) {
             imageTag.src = '../assets/' + randomProduct3.image;
+            trackShown(randomProduct3.id);
         }    
     });
     radioInput.forEach((radioTag, i) => {
@@ -38,16 +75,14 @@ export const productImageIntialization = () => {
 };
 
 document.querySelector('button').addEventListener('click', productImageIntialization);
-
 productImageIntialization();
 radioInput.forEach((radioTag) => {
     debugger
     const radioElement = radioTag.value;
     radioTag.addEventListener('click', () => {
-        
-        const userSelection = radioElement.value;
-        if (userSelection === products.id) {
-            masterproductArray.removeProductsByID(radioElement);
+        //const userSelection = radioElement;
+        if (radioElement === products.id) {
+            masterproductArray.removeProductsByID(radioElement.value);
             debugger
         }
     });
