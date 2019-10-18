@@ -16,4 +16,4 @@
 
     // Configuration options go here
 //    options: {}
-//});
+//})//
