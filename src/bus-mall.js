@@ -73,17 +73,18 @@ export const productImageIntialization = () => {
         }
     });
 };
-
+let clicks = 25;
 document.querySelector('button').addEventListener('click', productImageIntialization);
 productImageIntialization();
 radioInput.forEach((radioTag) => {
-    debugger
     const radioElement = radioTag.value;
     radioTag.addEventListener('click', () => {
         //const userSelection = radioElement;
-        if (radioElement === products.id) {
-            masterproductArray.removeProductsByID(radioElement.value);
-            debugger
+        trackClick(radioElement);
+        clicks--;
+        if (clicks === 0) {
+            document.location.href = 'results.html';
+            
         }
     });
 });
