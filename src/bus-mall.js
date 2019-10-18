@@ -83,7 +83,7 @@ radioInput.forEach((radioTag) => {
         trackClick(radioElement);
         clicks--;
         if (clicks === 0) {
-            document.location.href = 'results.html';
+            document.location.href = './results/results.html';
             
         }
     });
