@@ -8,7 +8,7 @@ const clickArray = [];
 const dataTrackedArray = [];
 
 function trackClick(productID) {
-    let track = products.findByID(clickArray, productID);
+    let track = masterproductArray.getProductsById(clickArray, productID);
     if (!track) {
         track = {
             id: productID,
@@ -24,7 +24,7 @@ function trackClick(productID) {
     localStorage.setItem('clickArray', clickJson);
 }
 function trackShown(productID) {
-    let tracked = products.findByID(dataTrackedArray, productID);
+    let tracked = masterproductArray.getProductsById(dataTrackedArray, productID);
     if (!tracked) {
         tracked = {
             id: productID,

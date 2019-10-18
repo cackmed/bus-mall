@@ -5,7 +5,7 @@ export class ProductArray {
     getProducts() {
         return this.products;
     }
-    getProductsbyId(productId) {
+    getProductsById(productId) {
         let productsMatch;
 
         this.products.forEach(products => {
